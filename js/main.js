@@ -1,8 +1,10 @@
 var token = false;
-//var jwt_token = localStorage.getItem('jwt_token');
-//console.log(jwt_token);
-
-
+var x = document.getElementById("loginDiv");
+if(!localStorage.getItem("jwt_token")) {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 
 function doLogin() {
     var username = $("#email").val();
@@ -25,7 +27,7 @@ function doLogin() {
 
     $.ajax(settings).done(function (response) {
        console.log(response);
-        localStorage.setItem("jwt_token", response - JSON);
+       localStorage.setItem("jwt_token", response - JSON);
 
     });
 
