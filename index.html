@@ -77,23 +77,57 @@
 
     <div class="container" id="UCDiv">
         <div class="panel panel-danger " align="center ">
-        <div  align="left ">
-            <form class="navbar-form navbar-left ">
-                <div class="form-group ">
-                    <input type="text" id="ucID" class="form-control" placeholder="กรอกเลข 13 หลัก ">
-                    <button type="submit " class="btn btn-primary " onclick="ucFind();">Search</button>
-                </div>
+            <div align="left ">
+                <form class="navbar-form navbar-left ">
+                    <div class="form-group ">
+                        <input type="text" id="ucID" class="form-control" placeholder="กรอกเลข 13 หลัก ">
+                        <button class="btn btn-success" id="readSmartcardBtn">อ่านบัตร</button>
+                        <button type="submit " class="btn btn-primary " onclick="ucFind();">Search</button>
+                    </div>
 
-            </form>
-        <br><br><br>
-        <table class='table' width="100% " border='0'>
-            <tr><td align='right'><label><h6>ชื่อ - สกุล : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
-            <tr><td align='right'><label><h6>ที่อยู่ : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
-            <tr><td align='right'><label><h6>ชื่อ - สกุล : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
-            <tr><td align='right'><label><h6>ชื่อ - สกุล : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
-        </table>
+                </form>
+                <br><br><br>
+
+                <table class='table' border='0'>
+                    <tr>
+                        <td align='right'>
+                            <table width="100%">
+                                <tr>
+                                    <td>
+                                        <div class="w3-card-4 w3-blue-grey" style="width:30%">
+                                            <div class="w3-container w3-center w3-pale-red">
+                                                <h5><b>ข้อมูลบัตรประชาชน</b></h5>
+                                            </div>
+                                            <div class="w3-container w3-center">
+                                                    sdf
+                                            </div>
+                                            <div class="w3-container w3-center w3-pale-red">&nbsp;</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="w3-card-4 w3-blue-grey" style="width:30%">
+                                            <div class="w3-container w3-center w3-pale-red">
+                                                <h5><b>ข้อมูลบัตรประชาชน</b></h5>
+                                            </div>
+                                            <div class="w3-container w3-center">
+                                                <br>
+                                                <img id="smPIC" class="w3-border w3-hover-opacity" src="/images/person.jpg" alt="Avatar" width="140" height="150" style="padding:2px;width:50%">
+                                                <h6 id="smCID">
+                                                    </h>
+                                                    <h6><span id="smName"></span></h6>
+                                                    <h6><span id="smDOB"></span></h6>
+                                                    <h6><span id="smAddress"></span></h6>
+                                            </div>
+                                            <div class="w3-container w3-center w3-pale-red">&nbsp;</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
 
     <script src="/js/main.js "></script>

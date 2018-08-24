@@ -96,3 +96,55 @@ function ShowCID(cid) {
     return result;
   }
 //1659900343151
+// อ่านข้อมูลจากบัตรสมาทการ์ด
+var readSmartcardBtn = $("#readSmartcardBtn");
+
+readSmartcardBtn.click(function(event) {
+    var smartcardData = readSmartcardData();
+    console.log(smartcardData);
+    showSmartcardData(JSON.parse(smartcardData));
+});
+
+function readSmartcardData() {
+    var result;
+    var settings = {
+      "async" : false, 
+      "url": "http://localhost:8084/smartcard/data/",
+      "method": "GET",
+    }
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+      result = response;
+    });
+    return result;
+  };
+
+  function showSmartcardData(smartcardData) {
+    var mPic =  "/JSmartCardReader1.0/picture/"+smartcardData.cid+".jpg";
+    var mAdd = smartcardData.address;
+    mAdd = mAdd.split(/#/i).join(' ');
+    var dThai = smartcardData.dob;
+
+    $("#smName").text(smartcardData.prename+smartcardData.fname+' '+smartcardData.lname);
+    $("#smDOB").text(DateThai(dThai));
+    $("#smCID").text(ThaiCID(smartcardData.cid));
+    $("#smAddress").text(mAdd);
+    document.getElementById("smPIC").src =mPic;
+    $("#ucID").val(smartcardData.cid);   // ** text use vale
+};
+
+function DateThai(strDate) {
+    now = new Date(); 
+    var thday = new Array ("อาทิตย์","จันทร์",
+    "อังคาร","พุธ","พฤหัส","ศุกร์","เสาร์"); 
+    var thmonth = new Array ("มกราคม","กุมภาพันธ์","มีนาคม",
+    "เมษายน","พฤษภาคม","มิถุนายน", "กรกฎาคม","สิงหาคม","กันยายน",
+    "ตุลาคม","พฤศจิกายน","ธันวาคม");
+   // return now.getDate()+ " " + thmonth[now.getMonth()]+ " " +  (0+now.getYear()+543);
+   return strDate.substr(6, 2) +" " + thmonth[Number(strDate.substr(4, 2))-1]+" "+ strDate.substr(0, 4)
+};
+
+function ThaiCID(cid) {
+    return cid.substr(0,1)+"-"+cid.substr(1,4)+"-"+cid.substr(5,5)+"-"+cid.substr(10,2)+"-"+cid.substr(12,1)
+}
