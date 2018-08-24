@@ -31,16 +31,11 @@
                 <i class="fa fa-home"></i>
                 <a class="navbar-brand" href="#">ระบบค้นหาข้อมูล</a>
             </div>
-            <form class="navbar-form navbar-left" action="/action_page.php">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </form>
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    <a href="#" id="myIDName">
+                        <span class="glyphicon glyphicon-user"></span> Sign Up </a>
                 </li>
                 <li>
                     <a href="#">
@@ -58,7 +53,7 @@
                         <div class="panel-heading" align="center">
                             <h3>
                                 <b>เข้าระบบ ICT MOPH Token
-                                <b></b>
+                                    <b></b>
                             </h3>
                         </div>
                         <div class="panel-body" align="center">
@@ -71,7 +66,7 @@
                                     <label for="pwd">Password:</label>
                                     <input type="password" class="form-control" id="pwd">
                                 </div>
-                                <button type="submit" class="btn btn-success" onclick="doLogin();">Submit</button>
+                                <button type="submit" class="btn btn-success" onclick="gettoken();">Submit</button>
                             </form>
                         </div>
                     </td>
@@ -79,7 +74,29 @@
             </table>
         </div>
     </div>
-        <script src="/js/main.js"></script>
+
+    <div class="container" id="UCDiv">
+        <div class="panel panel-danger " align="center ">
+        <div  align="left ">
+            <form class="navbar-form navbar-left ">
+                <div class="form-group ">
+                    <input type="text" id="ucID" class="form-control" placeholder="กรอกเลข 13 หลัก ">
+                    <button type="submit " class="btn btn-primary " onclick="ucFind();">Search</button>
+                </div>
+
+            </form>
+        <br><br><br>
+        <table class='table' width="100% " border='0'>
+            <tr><td align='right'><label><h6>ชื่อ - สกุล : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
+            <tr><td align='right'><label><h6>ที่อยู่ : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
+            <tr><td align='right'><label><h6>ชื่อ - สกุล : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
+            <tr><td align='right'><label><h6>ชื่อ - สกุล : </h6></label></td><td align='left'><label>Email address:</label></td></tr>
+        </table>
+        </div>
+    </div>
+    </div>
+
+    <script src="/js/main.js "></script>
 </body>
 
 </html>
