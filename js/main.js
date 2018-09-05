@@ -16,10 +16,9 @@ if (!localStorage.getItem("jwt_token")) {
 }
 
 function gettoken() {
-  var username = $("#username").val();
-  var password = $("#password").val();
-  console.log(username, password);
-
+  var username = $("#email").val();
+  var password = $("#pwd").val();
+  
   var settings = {
     "async": false,
     "url": "https://smarthealth.service.moph.go.th/phps/public/api/v3/gettoken",
@@ -39,6 +38,8 @@ function gettoken() {
     console.log(response);
     if (response.status == '401') {
       $("#loginStatus").text(response.status +" : " + response.message);
+      $("#email").val("");
+      $("#pwd").val("");
     } else {
       localStorage.setItem("jwt_token", response.jwt_token);
       localStorage.setItem("jwt_name", response.name + " " + response.lname);
