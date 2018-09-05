@@ -11,7 +11,7 @@ if (!localStorage.getItem("jwt_token")) {
   var idName = document.getElementById("myIDName");
   var mResponse = localStorage.getItem("jwt_token");
   var mICT = localStorage.getItem("jwt_name");
-  var mICT1 = localStorage.getItem("jwt_job");
+  var mICT1 = localStorage.getItem("jwt_position");
   idName.innerHTML = mICT + '(' + mICT1 + ')';
 }
 
@@ -36,14 +36,18 @@ function gettoken() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    if (response.status == '401') {
+    
+    if (response.jwt_token == '') {
       $("#loginStatus").text(response.status +" : " + response.message);
       $("#email").val("");
       $("#pwd").val("");
     } else {
+      $("#email").val("");
+      $("#pwd").val("");
+      $("#loginStatus").val("");
       localStorage.setItem("jwt_token", response.jwt_token);
-      localStorage.setItem("jwt_name", response.name + " " + response.lname);
-      localStorage.setItem("jwt_position", response.posion);
+      localStorage.setItem("jwt_name", response.user.name + " " + response.user.last_name);
+      localStorage.setItem("jwt_position", response.user.job_position);
     }
   });
 };

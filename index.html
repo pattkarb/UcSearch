@@ -46,11 +46,6 @@
                     </div>
                 </li>
             </ul>
-
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link active glyphicon-user" href="#" id="myIDName">User</a>
@@ -75,7 +70,6 @@
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-
                 <div class="form-group">
                     <label for="email">Email address:</label>
                     <input type="email" class="form-control" id="email" ng-model="email">
@@ -98,8 +92,47 @@
             <div class="col-sm-2"></div>
         </div>
     </div>
-
-    <div class="container" id="UCDiv"></div>
+    
+    <div class="container" id="UCDiv">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                            <br><br>
+                            <input type="text" id="ucID" class="form-control" placeholder="กรอกเลข 13 หลัก ">
+                            <br>
+                            <button class="btn btn-success" id="readSmartcardBtn">อ่านบัตร</button>
+                            <button type="submit " class="btn btn-primary " onclick="ucFind();">Search</button>
+                            <br>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="col-sm-8" style="background:rgba(80, 115, 143, 0.527)">
+                        <h5><b>ข้อมูลบัตรประชาชน</b></h5>    
+                </div>
+                <div class="col-sm-2">
+                        <img id="smPIC" class="w3-border w3-hover-opacity" src="/images/person.jpg" alt="Avatar" width="130" height="150">
+                        <h6 id="smCID"></h6>
+                        <h6><span id="smName"></span></h6>
+                        <h6><span id="smDOB"></span></h6>
+                        <h6><span id="smAddress"></span></h6>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>   
+        <br>
+        <br>
+      
+    </div>
 
 
 
