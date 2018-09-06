@@ -15,6 +15,18 @@ if (!localStorage.getItem("jwt_token")) {
   idName.innerHTML = mICT + '(' + mICT1 + ')';
 }
 
+$(document).ready(function () {
+  $(".nav-tabs a").click(function () {
+    $(this).tab('show');
+  });
+  $('.nav-tabs a').on('shown.bs.tab', function (event) {
+    var x = $(event.target).text();         // active tab
+    var y = $(event.relatedTarget).text();  // previous tab
+    $(".act span").text("");
+    $(".prev span").text("");
+  });
+});
+
 function gettoken() {
   var username = $("#email").val();
   var password = $("#pwd").val();
@@ -36,9 +48,9 @@ function gettoken() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    
+
     if (response.jwt_token == '') {
-      $("#loginStatus").text(response.status +" : " + response.message);
+      $("#loginStatus").text(response.status + " : " + response.message);
       $("#email").val("");
       $("#pwd").val("");
     } else {
@@ -52,12 +64,38 @@ function gettoken() {
   });
 };
 
+function findUcSearch(cid) {
+  var result;
+  var acid = cid;
+  var jwt_token = localStorage.getItem('jwt_token');
+ 
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/00031/009/01",
+    "method": "POST",
+    "headers": {
+      "jwt-token": jwt_token,
+      "Cache-Control": "no-cache",
+      "Postman-Token": "3b2dbf27-ee1e-43fb-a439-551e2465d65e"
+    },
+    "data": acid
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    //console.log(response.data.return.fname);
+    // $("#zcid").text(response.data.return.personId);
+    result = response;
+  });
+  return result;
+};
+
 function ucFind() {
-  var u = document.getElementById("ucID");
+ // var u = document.getElementById("ucID");
   var myCid = $("#ucID").val();
   if (myCid.length == 13) {
-    var myData = getPersonFromSmarthealth(myCid);
-    //  console.log(myData)
+    var myData = findUcSearch(myCid);
+    console.log(myData)
   }
 };
 
@@ -110,7 +148,7 @@ var readSmartcardBtn = $("#readSmartcardBtn");
 
 readSmartcardBtn.click(function (event) {
   var smartcardData = readSmartcardData();
-  console.log(smartcardData);
+  // console.log(smartcardData);
   showSmartcardData(JSON.parse(smartcardData));
 });
 
@@ -123,7 +161,7 @@ function readSmartcardData() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    // console.log(response);
     result = response;
   });
   return result;

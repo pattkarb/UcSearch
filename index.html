@@ -5,7 +5,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link href='https://fonts.googleapis.com/css?family=Kanit:400,300&subset=thai,latin' rel='stylesheet' type='text/css'>
     <link href="/css/style.css" rel="stylesheet">
 
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-		body {
+        body {
 		  font-family: 'Kanit', sans-serif;
 		}
 		h6 {
@@ -36,8 +36,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #88bce2;">
         <i class="navbar-brand fa fa-home w3-xxxlarge bg-red"></i>
         <a class="navbar-brand" href="#"> Home</a>
-        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
@@ -47,7 +47,8 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="#">Action 1</a>
                         <a class="dropdown-item" href="#">Action 2</a>
@@ -111,8 +112,7 @@
                         <br><br>
                         <input type="text" id="ucID" class="form-control" placeholder="กรอกเลข 13 หลัก ">
                         <br>
-                        <button class="btn btn-success" id="readSmartcardBtn">อ่านบัตร</button>
-                        <button type="submit " class="btn btn-primary " onclick="ucFind();">Search</button>
+                        <button class="btn btn-success" id="readSmartcardBtn">อ่านข้อมูลจากบัตรประชาชน</button>
                         <br>
                     </div>
                     <div class="col-sm-2"></div>
@@ -122,22 +122,68 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-8">
-asdf
+            <div class="col-sm-12">
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu1">Menu 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu2">Menu 2</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content border mb-3">
+                    <div id="home" class="container tab-pane active"><br>
+                        <h3>ข้อมูลจากบัตรประชาชน</h3>
+                        <p>การอ่านข้อมูลจากบัตรประชาชนผู้รับบริการ โดยใช้ JSmartCardReader1.0 กระทรวงสาธารณสุข.</p>
+
+                        <ul class="list-group">
+                            <li class="list-group-item  list-group-item-success active">ข้อมูลจากบัตรประชาชน</li>
+                            <li class="list-group-item">
+                                <img id="smPIC" class="w3-border w3-hover-opacity" src="/images/person.jpg" alt="Avatar"
+                                    width="130" height="150">
+                            </li>
+                            <li class="list-group-item">
+                                <h6 id="smCID"></h6>
+                            </li>
+                            <li class="list-group-item">
+                                <h6><span id="smName"></span></h6>
+                            </li>
+                            <li class="list-group-item">
+                                <h6><span id="smDOB"></span></h6>
+                            </li>
+                            <li class="list-group-item">
+                                <h6><span id="smAddress"></span></h6>
+                            </li>
+                        </ul>
+                        <br><br>
+                    </div>
+                    <div id="menu1" class="container tab-pane fade"><br>
+                        <h3>Menu 1</h3>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</p>
+                            <button type="submit " class="btn btn-primary " onclick="ucFind();">Search</button>
+                    </div>
+                    <div id="menu2" class="container tab-pane fade"><br>
+                        <h3>Menu 2</h3>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                            laudantium, totam rem aperiam.</p>
+                    </div>
+                </div>
+                
+                <p class="act"><span></span></p>
+                <p class="prev"><span></span></p>
             </div>
-            <div class="col-sm-4" align="center">
-                    <ul class="list-group">
-                      <li class="list-group-item  list-group-item-success active">ข้อมูลจากบัตรประชาชน</li>
-                      <li class="list-group-item">
-                            <img id="smPIC" class="w3-border w3-hover-opacity" src="/images/person.jpg" alt="Avatar" width="130" height="150">
-                      </li>
-                      <li class="list-group-item"><h6 id="smCID"></h6></li>
-                      <li class="list-group-item"><h6><span id="smName"></span></h6></li>
-                      <li class="list-group-item"><h6><span id="smDOB"></span></h6></li>
-                      <li class="list-group-item"><h6><span id="smAddress"></span></h6></li>
-                    </ul>
-            </div>
+            
         </div>
+        
+    </div>
     </div>
 
     <script src="/js/main.js "></script>
