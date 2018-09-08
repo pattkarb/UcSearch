@@ -68,7 +68,7 @@ function findUcSearch(cid) {
   var result;
   var acid = cid;
   var jwt_token = localStorage.getItem('jwt_token');
- 
+  
   var settings = {
     "async": false,
     "url": "https://smarthealth.service.moph.go.th/phps/api/00031/009/01",
