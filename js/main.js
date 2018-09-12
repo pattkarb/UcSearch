@@ -74,6 +74,8 @@ function findperson32() {
     var myData = getPerson32(myCid);
     //console.log(myData);
     showPerson32(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
   }
 };
 
@@ -99,20 +101,20 @@ function getPerson32(cid) {
 };
 
 function showPerson32(person) {
-  console.log(person);
-  $("#p32_cid").html(person.cid);
-  $("#p32_moph_id").html(person.moph_id);
-  $("#p32_hid").html(person.hid);
-  $("#p32_prename").html(person.prename);
-  $("#p32_prename_moi").html(person.prename_moi);
-  $("#p32_name").html(person.name);
-  $("#p32_lname").html(person.lname);
-  $("#p32_sex").html(person.sex);
-  $("#p32_birth").html(person.birth);
-  $("#p32_birth_moi").html(person.birth_moi);
-  $("#p32_mstatus").html(person.mstatus);
-}
+  //console.log(person);
+  var table = document.getElementById('mytable32');
 
+  $("#mytable32").children().remove();
+
+  for (x in person) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += x;
+    cell2.innerHTML += person[x];
+  }
+}
 
 
 function ShowCID(cid) {
