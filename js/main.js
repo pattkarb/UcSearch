@@ -64,40 +64,56 @@ function gettoken() {
   });
 };
 
-function findUcSearch(cid) {
+
+
+// 3.2 อ่านข้อมูลทั่วไป page 15.
+function findperson32() {
+  // var u = document.getElementById("ucID");
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson32(myCid);
+    //console.log(myData);
+    showPerson32(myData);
+  }
+};
+
+function getPerson32(cid) {
   var result;
-  var acid = cid;
-  var jwt_token = localStorage.getItem('jwt_token');
-  
   var settings = {
-    "async": false,
-    "url": "https://smarthealth.service.moph.go.th/phps/api/00031/009/01",
-    "method": "POST",
+    "async": false, // # true -> false 1
+    // "crossDomain": true, // ลบทิ้ง 2
+    "url": "https://smarthealth.service.moph.go.th/phps/api/person/v2/findby/cid?cid=" + cid, // #3
+    "method": "GET",
     "headers": {
-      "jwt-token": jwt_token,
-      "Cache-Control": "no-cache",
-      "Postman-Token": "3b2dbf27-ee1e-43fb-a439-551e2465d65e"
-    },
-    "data": acid
-  };
+      "jwt-token": localStorage.getItem("jwt_token"), // #4
+      // "Cache-Control": "no-cache", // #5
+      // "Postman-Token": "d837f56a-df1c-4109-9495-c629fe6b685b" //#6
+    }
+  }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
-    //console.log(response.data.return.fname);
-    // $("#zcid").text(response.data.return.personId);
-    result = response;
+    //console.log(response);
+    result = response; // #7
   });
   return result;
 };
 
-function ucFind() {
- // var u = document.getElementById("ucID");
-  var myCid = $("#ucID").val();
-  if (myCid.length == 13) {
-    var myData = findUcSearch(myCid);
-    console.log(myData)
-  }
-};
+function showPerson32(person) {
+  console.log(person);
+  $("#p32_cid").html(person.cid);
+  $("#p32_moph_id").html(person.moph_id);
+  $("#p32_hid").html(person.hid);
+  $("#p32_prename").html(person.prename);
+  $("#p32_prename_moi").html(person.prename_moi);
+  $("#p32_name").html(person.name);
+  $("#p32_lname").html(person.lname);
+  $("#p32_sex").html(person.sex);
+  $("#p32_birth").html(person.birth);
+  $("#p32_birth_moi").html(person.birth_moi);
+  $("#p32_mstatus").html(person.mstatus);
+}
+
+
 
 function ShowCID(cid) {
   var result;
