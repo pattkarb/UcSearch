@@ -213,7 +213,7 @@ function findperson34() {
 };
 
 function getPerson34(cid) {
-  console.log(cid);
+  //console.log(cid);
   var result;
   var settings = {
     "async": false,
@@ -256,12 +256,70 @@ function showPerson34(person) {
     }
 
   }
-
-
-
-
 }
 //-------------------------------------------------------------------------------------------------------------
+// 3.5 ข้อมูลสิทธิการรักษา จาก สปสช. (ต้องใช้ smctoken ที่ได้จาก UCAuthentication 4.x ของ สปสช.)
+
+function findperson35() {
+ // var smc = getSMCToken()
+ // console.log(smc);
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson35(myCid);
+    showPerson35(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
+  }
+};
+
+function getPerson35(cid) {
+  //console.log(cid);
+  var result;
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/nhsodata/v1/search_by_pid?userPersonId=" + 
+    "3650700110916&smctoken=xq6843ubx2uxn74q&personId=" + cid,
+    "method": "GET",
+    "headers": {
+      "jwt-token": localStorage.getItem("jwt_token"), // #4
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    //console.log(response.data);
+    result = response; // #7
+  });
+  return result;
+};
+
+function showPerson35(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable35');
+
+  $("#tbody35").children().remove();
+
+  for (x in person) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += x;
+    cell2.innerHTML += person[x];
+  }
+}
+
+function getSMCToken() {
+  var txtFile = "/NHSOAuthen4.2018/nhso_token.txt";
+  var file = new File(txtFile);
+  file.open("r"); // open file with read access
+  var str = "";
+
+  while (!file.eof) {
+		str += file.readln() + "\n";
+  }
+  file.close();
+  return str;
+}
 
 
 function ShowCID(cid) {
