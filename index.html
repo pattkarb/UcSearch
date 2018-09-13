@@ -129,11 +129,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#home">Home</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item actived">
                         <a class="nav-link" href="#menu1">ข้อมูลทั่วไป</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#menu2">Menu 2</a>
+                        <a class="nav-link" href="#menu2">ข้อมูลที่อยู่</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu3">ข้อมูลแฟ้ยา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu4">ข้อมูลสิทธิการรักษา</a>
                     </li>
                 </ul>
 
@@ -169,30 +175,88 @@
                         <p>อ่านข้อมูลทั่วไป จาก SmartHealth Service กระทรวง. (คู่มือหน้า 15)</p>
                         <button type="submit " class="btn btn-primary btn-sm" onclick="findperson32();">Search</button>
                         <br><br>
-                            <table class="table table-hover" id="mytable32">
-                                   <thead>
-                                       <tr class="table-primary" align='center'>
-                                           <th>Field</th>
-                                           <th>ข้อมูล</th>
-                                       </tr>
-                                   </thead> 
-                                   <tbody>
-                                   </tbody>
-                            </table>
+                        <table class="table table-hover" id="mytable32">
+                            <thead>
+                                <tr class="table-primary" align='center'>
+                                    <th>Field</th>
+                                    <th>ข้อมูล</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody32">
+                            </tbody>
+                        </table>
                     </div>
                     <div id="menu2" class="container tab-pane fade"><br>
-                        <h3>Menu 2</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium, totam rem aperiam.</p>
+                        <button type="submit " class="btn btn-primary btn-sm" onclick="findperson33();">Search</button>
+                        <br>
+                        <h3>3.3 ข้อมูลที่อยู่</h3>
+                        <p>3.3.1 ข้อมูลที่อยู่ ตามบัตรประชาชน (คู่มือหน้า 17). <br> [
+                            https://smarthealth.service.moph.go.th/phps/api/address/v1/find_by_cid ]</p>
+                        <br>
+                        <table class="table table-hover" id="mytable33">
+                            <thead>
+                                <tr class="table-primary" align='center'>
+                                    <th>Field</th>
+                                    <th>ข้อมูล</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody33">
+                            </tbody>
+                        </table>
+                        <p>3.3.2 ข้อมูลที่อยู่ ตามประเภทต่าง ๆ (คู่มือหน้า 17). <br> [
+                            https://smarthealth.service.moph.go.th/phps/api/address/v1/find_by_cid_and_addresstype ]</p>
+                        <br>
+                        <table class="table table-hover" id="mytable331">
+                            <thead>
+                                <tr class="table-primary" align='center'>
+                                    <th>Field</th>
+                                    <th>ข้อมูล</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody331">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="menu3" class="container tab-pane fade"><br>
+                        <button type="submit " class="btn btn-primary btn-sm" onclick="findperson34();">Search</button>
+                        <h3>3.4 ข้อมูลการแพ้ยา</h3>
+                        <p>[ https://smarthealth.service.moph.go.th/phps/api/drugallergy/v1/find_by_cid ]</p>
+                        <br>
+                        <table class="table table-hover" id="mytable34">
+                            <thead>
+                                <tr class="table-primary" align='center'>
+                                    <th>Field</th>
+                                    <th>ข้อมูล</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody34">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="menu4" class="container tab-pane fade"><br>
+                        <button type="submit " class="btn btn-primary btn-sm" onclick="findperson35();">Search</button>
+                        <h3>3.5 ข้อมูลสิทธิการรักษา</h3>
+                        <p>[  ]</p>
+                        <br>
+                        <table class="table table-hover" id="mytable35">
+                            <thead>
+                                <tr class="table-primary" align='center'>
+                                    <th>Field</th>
+                                    <th>ข้อมูล</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody35">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                
+
                 <p class="act"><span></span></p>
                 <p class="prev"><span></span></p>
             </div>
-            
+
         </div>
-        
+
     </div>
     </div>
 

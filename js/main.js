@@ -65,7 +65,7 @@ function gettoken() {
 };
 
 
-
+//-------------------------------------------------------------------------------------------------------------
 // 3.2 อ่านข้อมูลทั่วไป page 15.
 function findperson32() {
   // var u = document.getElementById("ucID");
@@ -104,7 +104,7 @@ function showPerson32(person) {
   //console.log(person);
   var table = document.getElementById('mytable32');
 
-  $("#mytable32").children().remove();
+  $("#tbody32").children().remove();
 
   for (x in person) {
     var rowCount = table.rows.length;
@@ -115,6 +115,153 @@ function showPerson32(person) {
     cell2.innerHTML += person[x];
   }
 }
+//-------------------------------------------------------------------------------------------------------------
+// 3.3 อ่านข้อมูลที่อยู่ page 17.  // cid = 1650200002689
+function findperson33() {
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson33(myCid);
+    showPerson33(myData);
+
+    myData = getPerson331(myCid);
+    showPerson331(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
+  }
+};
+
+function getPerson33(cid) {
+  var result;
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/address/v1/find_by_cid?cid=" + cid,
+    "method": "GET",
+    "headers": {
+      "jwt-token": localStorage.getItem("jwt_token"),
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    result = response;
+  });
+  return result;
+};
+
+function showPerson33(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable33');
+
+  $("#tbody33").children().remove();
+
+  for (x in person) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += x;
+    cell2.innerHTML += person[x];
+  }
+}
+
+function getPerson331(cid) {
+  var result;
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/address/v1/find_by_cid_and_addresstype?cid=" + cid + "&addresstype=1",
+    "method": "GET",
+    "headers": {
+      "jwt-token": localStorage.getItem("jwt_token"),
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    result = response;
+  });
+  return result;
+};
+
+function showPerson331(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable331');
+
+  $("#tbody331").children().remove();
+
+  for (x in person) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += x;
+    cell2.innerHTML += person[x];
+  }
+}
+
+//-------------------------------------------------------------------------------------------------------------
+// 3.4 อ่านข้อมูลการแพ้ยา page 19. cid= 1650300068126
+function findperson34() {
+  // var u = document.getElementById("ucID");
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson34(myCid);
+    //console.log(myData);
+    showPerson34(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
+  }
+};
+
+function getPerson34(cid) {
+  console.log(cid);
+  var result;
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/drugallergy/v1/find_by_cid?cid=" + cid,
+    "method": "GET",
+    "headers": {
+      "jwt-token": localStorage.getItem("jwt_token"), // #4
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    //console.log(response.data);
+    result = response; // #7
+  });
+  return result;
+};
+
+function showPerson34(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable34');
+
+  $("#tbody34").children().remove();
+
+  for (x in person.data) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    row.className = "table-danger";
+    var cell1 = row.insertCell(0);
+    cell1.innerHTML += "ยาตัวที่ : " + (Number(x) + 1);
+    cell1.colSpan = 2
+    
+    
+    for (y in person.data[x]) {
+      var rowCount = table.rows.length;
+      var row = table.insertRow(rowCount);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML += y;
+      cell2.innerHTML += person.data[x][y];
+    }
+
+  }
+
+
+
+
+}
+//-------------------------------------------------------------------------------------------------------------
 
 
 function ShowCID(cid) {
