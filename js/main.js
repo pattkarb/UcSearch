@@ -244,8 +244,8 @@ function showPerson34(person) {
     var cell1 = row.insertCell(0);
     cell1.innerHTML += "ยาตัวที่ : " + (Number(x) + 1);
     cell1.colSpan = 2
-    
-    
+
+
     for (y in person.data[x]) {
       var rowCount = table.rows.length;
       var row = table.insertRow(rowCount);
@@ -261,24 +261,28 @@ function showPerson34(person) {
 // 3.5 ข้อมูลสิทธิการรักษา จาก สปสช. (ต้องใช้ smctoken ที่ได้จาก UCAuthentication 4.x ของ สปสช.)
 
 function findperson35() {
- // var smc = getSMCToken()
- // console.log(smc);
+  var smc_code = localStorage.getItem("smc_token");
+  if (smc_code.length == '') {
+    getSMCToken()
+  }
+
   var myCid = $("#ucID").val();
   if (myCid.length == 13) {
-    var myData = getPerson35(myCid);
+    var myData = getPerson35(myCid, smc_code);
     showPerson35(myData);
   } else {
     alert('กรอกข้อมูล เลข 13 หลัก');
   }
 };
 
-function getPerson35(cid) {
+function getPerson35(cid, smc_token) {
   //console.log(cid);
   var result;
+  var res = smc_token.split("#");
   var settings = {
     "async": false,
-    "url": "https://smarthealth.service.moph.go.th/phps/api/nhsodata/v1/search_by_pid?userPersonId=" + 
-    "3650700110916&smctoken=xq6843ubx2uxn74q&personId=" + cid,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/nhsodata/v1/search_by_pid?userPersonId=" + res[0] +
+      "&smctoken=" + res[1] + "&personId=" + cid,
     "method": "GET",
     "headers": {
       "jwt-token": localStorage.getItem("jwt_token"), // #4
@@ -308,18 +312,67 @@ function showPerson35(person) {
   }
 }
 
-function getSMCToken() {
-  var txtFile = "/NHSOAuthen4.2018/nhso_token.txt";
-  var file = new File(txtFile);
-  file.open("r"); // open file with read access
-  var str = "";
-
-  while (!file.eof) {
-		str += file.readln() + "\n";
+function readTextFile(file) {
+  var result;
+  var rawFile = new XMLHttpRequest();
+  rawFile.open("GET", file, false);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4) {
+      if (rawFile.status === 200 || rawFile.status == 0) {
+        var allText = rawFile.responseText;
+        result = allText;
+      }
+    }
   }
-  file.close();
-  return str;
+  rawFile.send(null);
+  return result;
 }
+
+function getSMCToken() {
+  var txtFile = readTextFile('/NHSOAuthen4.2018/nhso_token.txt');
+  if (txtFile.length > 0) {
+    localStorage.setItem("smc_token", txtFile);
+  }
+}
+
+//-------------------------------------------------------------------------------------------------------------//
+// ค้นหาข้อมูลทำเบียนราษฎร์ จากกรมการปกครอง ต้องใช้ SmartCardAgent ของ มหาดไทย
+
+function findperson36() {
+
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson36(myCid);
+    //console.log(myData);
+    // showPerson36(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
+  }
+};
+
+function getPerson36(cid) {
+  var result;
+  var mToken = localStorage.getItem('jwt_token');
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/00031/009/01",
+    "method": "POST",
+    "headers": {
+      "jwt-token": mToken,
+      "Cache-Control": "no-cache",
+      "Postman-Token": "936c0d78-c7b0-490d-a110-ad9ac869f63f"
+    },
+    "data": cid
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    result = response;
+  })
+  return result
+};
+
+
 
 
 function ShowCID(cid) {
