@@ -262,7 +262,8 @@ function showPerson34(person) {
 
 function findperson35() {
   var smc_code = localStorage.getItem("smc_token");
-  if (smc_code.length == '') {
+  
+  if (smc_code == null) {
     getSMCToken()
   }
 
@@ -352,28 +353,26 @@ function findperson36() {
 
 function getPerson36(cid) {
   var result;
-  var mToken = localStorage.getItem('jwt_token');
+  var acid = cid;
   var settings = {
     "async": false,
     "url": "https://smarthealth.service.moph.go.th/phps/api/00031/009/01",
     "method": "POST",
     "headers": {
-      "jwt-token": mToken,
+      "jwt-token": localStorage.getItem("jwt_token"),
       "Cache-Control": "no-cache",
-      "Postman-Token": "936c0d78-c7b0-490d-a110-ad9ac869f63f"
+      "Postman-Token": "3b2dbf27-ee1e-43fb-a439-551e2465d65e"
     },
-    "data": cid
-  }
+    "data": acid
+  };
 
   $.ajax(settings).done(function (response) {
     console.log(response);
+    //console.log(response.data.return.fname);
     result = response;
-  })
-  return result
+  });
+  return result;
 };
-
-
-
 
 function ShowCID(cid) {
   var result;
