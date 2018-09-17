@@ -262,7 +262,7 @@ function showPerson34(person) {
 
 function findperson35() {
   var smc_code = localStorage.getItem("smc_token");
-  
+
   if (smc_code == null) {
     getSMCToken()
   }
@@ -344,8 +344,7 @@ function findperson36() {
   var myCid = $("#ucID").val();
   if (myCid.length == 13) {
     var myData = getPerson36(myCid);
-    //console.log(myData);
-    // showPerson36(myData);
+    showPerson36(myData);
   } else {
     alert('กรอกข้อมูล เลข 13 หลัก');
   }
@@ -353,26 +352,80 @@ function findperson36() {
 
 function getPerson36(cid) {
   var result;
-  var acid = cid;
   var settings = {
     "async": false,
-    "url": "https://smarthealth.service.moph.go.th/phps/api/00031/009/01",
+    "url": "https://smarthealth.service.moph.go.th/phps/api/00023/027/01",
     "method": "POST",
     "headers": {
       "jwt-token": localStorage.getItem("jwt_token"),
       "Cache-Control": "no-cache",
-      "Postman-Token": "3b2dbf27-ee1e-43fb-a439-551e2465d65e"
+      "Postman-Token": "bdbb19f8-9914-4a3c-b9eb-dbb083871e47"
     },
-    "data": acid
-  };
+    "data": cid
+  }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
-    //console.log(response.data.return.fname);
+    // console.log(response);
     result = response;
+
   });
   return result;
 };
+
+function showPerson36(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable36');
+
+  $("#tbody36").children().remove();
+
+  for (y in person.data) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += y;
+    cell2.innerHTML += person.data[y];
+  }
+
+}
+
+//---------------------------------------------------------------------------------------------
+// ทะเบียนราษฎร์ Service 02
+
+function findperson37() {
+
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson37(myCid);
+    //showPerson36(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
+  }
+};
+
+function getPerson37(cid) {
+  var result;
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/00023/027/03",
+    "method": "POST",
+    "headers": {
+      "jwt-token": localStorage.getItem("jwt_token"),
+      "Cache-Control": "no-cache",
+      "Postman-Token": "bdbb19f8-9914-4a3c-b9eb-dbb083871e47"
+    },
+    "data": cid
+  }
+  
+  $.ajax(settings).done(function (response) {
+    // console.log(response);
+    result = response;
+
+  });
+  return result;
+};
+
+//---------------------------------------------------------------------------------------------
 
 function ShowCID(cid) {
   var result;
