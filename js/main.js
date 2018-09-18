@@ -397,7 +397,7 @@ function findperson37() {
   var myCid = $("#ucID").val();
   if (myCid.length == 13) {
     var myData = getPerson37(myCid);
-    //showPerson36(myData);
+    showPerson37(myData);
   } else {
     alert('กรอกข้อมูล เลข 13 หลัก');
   }
@@ -407,7 +407,7 @@ function getPerson37(cid) {
   var result;
   var settings = {
     "async": false,
-    "url": "https://smarthealth.service.moph.go.th/phps/api/00023/027/03",
+    "url": "https://smarthealth.service.moph.go.th/phps/api/00023/001/01",
     "method": "POST",
     "headers": {
       "jwt-token": localStorage.getItem("jwt_token"),
@@ -424,6 +424,129 @@ function getPerson37(cid) {
   });
   return result;
 };
+
+function showPerson37(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable37');
+
+  $("#tbody37").children().remove();
+
+  for (y in person.data) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += y;
+    cell2.innerHTML += person.data[y];
+  }
+
+}
+
+//---------------------------------------------------------------------------------------------
+// ทะเบียนราษฎร์ Service 03
+
+function findperson38() {
+
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson38(myCid);
+    showPerson38(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
+  }
+};
+
+function getPerson38(cid) {
+  var result;
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/00023/008/01",
+    "method": "POST",
+    "headers": {
+      "jwt-token": localStorage.getItem("jwt_token"),
+      "Cache-Control": "no-cache",
+      "Postman-Token": "bdbb19f8-9914-4a3c-b9eb-dbb083871e47"
+    },
+    "data": cid
+  }
+  
+  $.ajax(settings).done(function (response) {
+    // console.log(response);
+    result = response;
+
+  });
+  return result;
+};
+
+function showPerson38(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable38');
+
+  $("#tbody38").children().remove();
+
+  for (y in person.data) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += y;
+    cell2.innerHTML += person.data[y];
+  }
+
+}
+
+//---------------------------------------------------------------------------------------------
+// ทะเบียนราษฎร์ Service 04
+
+function findperson39() {
+
+  var myCid = $("#ucID").val();
+  if (myCid.length == 13) {
+    var myData = getPerson39(myCid);
+    showPerson39(myData);
+  } else {
+    alert('กรอกข้อมูล เลข 13 หลัก');
+  }
+};
+
+function getPerson39(cid) {
+  var result;
+  var settings = {
+    "async": false,
+    "url": "https://smarthealth.service.moph.go.th/phps/api/00023/027/01",
+    "method": "POST",
+    "headers": {
+      "jwt-token": localStorage.getItem("jwt_token"),
+      "Cache-Control": "no-cache",
+      "Postman-Token": "bdbb19f8-9914-4a3c-b9eb-dbb083871e47"
+    },
+    "data": cid
+  }
+  
+  $.ajax(settings).done(function (response) {
+    // console.log(response);
+    result = response;
+
+  });
+  return result;
+};
+
+function showPerson39(person) {
+  //console.log(person);
+  var table = document.getElementById('mytable39');
+
+  $("#tbody39").children().remove();
+
+  for (y in person.data) {
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML += y;
+    cell2.innerHTML += person.data[y];
+  }
+
+}
 
 //---------------------------------------------------------------------------------------------
 
